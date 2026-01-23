@@ -1,11 +1,12 @@
-const db = require("../config/db");
+class Order {
+  constructor({ id, productId, quantity, status, createdAt }) {
+    this.id = id;
+    this.productId = productId;
+    this.quantity = quantity;
+    this.status = status;
+    this.createdAt = createdAt;
+  }
+}
 
-const createOrder = async (productId, quantity, connection) => {
-  const [result] = await connection.execute(
-    "INSERT INTO orders (productId, quantity) VALUES (?, ?)",
-    [productId, quantity]
-  );
-  return result.insertId;
-};
+module.exports = Order;
 
-module.exports = { createOrder };
